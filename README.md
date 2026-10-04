@@ -79,7 +79,14 @@ Ce que montrent ces dix soumissions :
 - **B est un optimum dans toutes les directions testées.** Chaque variation fait baisser le score.
 - **L'écart restant est un aléa individuel.** Un modèle « étalon = B + bruit logistique d'environ 0,3 point de cote R » reproduit les dix exactitudes à environ 0,3 point près. Il prédit aussi un écart de 0,28 pour le modèle de production, contre **0,270** annoncé dans l'énoncé (audit, section 7).
 
-Aucune règle fondée sur les variables observées ne peut donc faire mieux en espérance que B. **Le plafond se situe vers 94,5 à 95 %.**
+Nous avons aussi traité les dix scores comme des comptes exacts sur 4 000 candidats, et ajusté par maximum de vraisemblance les poids de l'étalon, son bruit et son taux ([`sondes/analyse_sondes.py`](sondes/analyse_sondes.py)). Résultats :
+
+- **Poids des heures : 0,141**, compatible avec le 0,146 de B (p = 0,45).
+- **Première génération, région et revenu : poids non significatifs** (p = 0,32).
+- **Bruit : 0,31 point de cote R ; taux de l'étalon : 40,6 %.**
+- **Le meilleur taux de sélection reste 40 %**, avec une exactitude attendue de 94,64 à 94,68 %.
+
+Aucune règle fondée sur les variables observées ne peut donc faire mieux en espérance que B. **Le plafond se situe vers 94,7 %**, et B obtient 94,63 %.
 
 Nous avons volontairement arrêté les soumissions là. Continuer à soumettre pour retourner des décisions individuelles reviendrait à apprendre l'étalon par le classement, pas à mieux modéliser le mérite. Ce serait inutile pour l'institution et contraire à l'esprit du défi.
 
