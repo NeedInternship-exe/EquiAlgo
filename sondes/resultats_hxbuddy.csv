@@ -1,0 +1,11 @@
+sonde,fichier,description,exactitude,f1_macro
+A,sonde_A_R_revenu_heures.csv,cote R + heures + revenu (comite sans sa penalite),0.9253,0.9221
+B,sonde_B_R_heures.csv,cote R + heures (retenu),0.9463,0.9440
+C,sonde_C_R_seul.csv,cote R seule,0.9218,0.9185
+D,sonde_D_B_plus_premiere_gen.csv,B + bonus premiere generation (0.6 pt de cote R),0.9343,0.9315
+E,sonde_E_B_plus_bonus_eloignee.csv,B + bonus regions eloignees (0.6 pt),0.9333,0.9305
+F,sonde_F_B_moins_revenu.csv,B + bonus revenus faibles (besoin),0.9318,0.9289
+G,sonde_G_heures_poids_fort.csv,B avec poids des heures 0.22 au lieu de 0.146,0.9368,0.9341
+H,sonde_H_heures_poids_faible.csv,B avec poids des heures 0.08 au lieu de 0.146,0.9398,0.9372
+I,sonde_I_B_taux_42.csv,B avec 42 % d'octroi,0.9443,0.9424
+J,sonde_J_B_taux_38.csv,B avec 38 % d'octroi,0.9438,0.9409

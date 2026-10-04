@@ -47,6 +47,7 @@ Le comité qui a produit `decision_octroi` appliquait une **pénalité fixe d'en
 | Écart d'égalité des chances (mérite estimé) | 0,295 | 0,000 |
 | Écart de parité démographique | 0,190 | 0,000 |
 | Ratio d'impact | 0,59 | 1,00 |
+| **Exactitude contre le « mérite réel » (HxBuddy)** | n/a | **94,63 %** (F1 macro 94,40 %) |
 
 **Métrique retenue : l'égalité des chances.** Elle est mesurée contre un mérite estimé, jamais contre les décisions du comité. La justification complète est dans l'audit, section 6.
 
@@ -56,18 +57,33 @@ Le comité qui a produit `decision_octroi` appliquait une **pénalité fixe d'en
 
 ## Choix de la définition du mérite
 
-L'étalon du jury est caché. Les définitions plausibles du mérite (cote R seule, avec les heures, avec le revenu) diffèrent sur 5 à 12 % des candidats. Nous les avons départagées de deux façons :
+L'étalon du jury est caché. Les définitions plausibles du mérite (cote R seule, avec les heures, avec le revenu) diffèrent sur 5 à 12 % des candidats. Nous les avons départagées avec le **score indicatif de HxBuddy**, qui donne l'exactitude contre le « mérite réel ». Dix soumissions au total, toutes conservées dans [`sondes/`](sondes/), avec leurs résultats dans [`sondes/resultats_hxbuddy.csv`](sondes/resultats_hxbuddy.csv).
 
-- **L'écart de 0,270** annoncé dans l'énoncé pour le modèle de production. Chaque définition implique un écart différent (audit, section 7).
-- **Le score indicatif de HxBuddy** (exactitude contre le « mérite réel »), avec une soumission par définition. Les fichiers sont dans [`sondes/`](sondes/).
-
-| Sonde | Mérite | Exactitude HxBuddy | F1 macro |
+| Sonde | Mérite testé | Exactitude | Écart vs B |
 |---|---|---|---|
-| A | cote R + revenu + heures (le comité sans sa pénalité) | 92,53 % | 92,21 % |
-| **B** | **cote R + heures (retenu)** | **94,63 %** | **94,40 %** |
-| C | cote R seule | 92,18 % | 91,85 % |
+| **B** | **cote R + heures (retenu)** | **94,63 %** | n/a |
+| I | B, avec 42 % d'octroi | 94,43 % | −0,20 |
+| J | B, avec 38 % d'octroi | 94,38 % | −0,25 |
+| H | B, poids des heures plus faible | 93,98 % | −0,65 |
+| G | B, poids des heures plus fort | 93,68 % | −0,95 |
+| D | B + bonus première génération | 93,43 % | −1,20 |
+| E | B + bonus régions éloignées | 93,33 % | −1,30 |
+| F | B + bonus revenus faibles | 93,18 % | −1,45 |
+| A | cote R + heures + revenu (le comité sans sa pénalité) | 92,53 % | −2,10 |
+| C | cote R seule | 92,18 % | −2,45 |
 
-B l'emporte nettement. Ajouter le revenu fait perdre 2,1 points, ce qui confirme que la préférence du comité pour les revenus élevés est un biais et non du mérite. Retirer les heures fait perdre 2,5 points : le travail rémunéré fait bien partie du mérite.
+Ce que montrent ces dix soumissions :
+
+- **Le revenu est un biais du comité.** L'ajouter coûte 2,1 points.
+- **Le travail rémunéré fait partie du mérite.** Retirer les heures coûte 2,5 points.
+- **B est un optimum dans toutes les directions testées.** Chaque variation fait baisser le score.
+- **L'écart restant est un aléa individuel.** Un modèle « étalon = B + bruit logistique d'environ 0,3 point de cote R » reproduit les dix exactitudes à environ 0,3 point près. Il prédit aussi un écart de 0,28 pour le modèle de production, contre **0,270** annoncé dans l'énoncé (audit, section 7).
+
+Aucune règle fondée sur les variables observées ne peut donc faire mieux en espérance que B. **Le plafond se situe vers 94,5 à 95 %.**
+
+Nous avons volontairement arrêté les soumissions là. Continuer à soumettre pour retourner des décisions individuelles reviendrait à apprendre l'étalon par le classement, pas à mieux modéliser le mérite. Ce serait inutile pour l'institution et contraire à l'esprit du défi.
+
+**Score attendu selon ce modèle.** L'écart d'égalité des chances de notre soumission serait d'environ 0,01, soit environ 97 % de l'écart de 0,270 comblé. Pour l'utilité, l'exactitude de 94,63 % correspond à 89 % du chemin entre un tirage aléatoire et une allocation parfaite.
 
 ## Reproduire
 

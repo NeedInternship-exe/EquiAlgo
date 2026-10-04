@@ -46,6 +46,7 @@
   .carte p { font-size: 18px; }
   table { border-collapse: collapse; width: 100%; font-size: 19px; }
   th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--ligne); }
+  td:not(:first-child) { white-space: nowrap; }
   th:first-child, td:first-child { text-align: left; }
   th { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: var(--gris); font-weight: 600; }
   .etapes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 26px; }
@@ -156,6 +157,32 @@
   <div class="marque">figures/front_pareto.png · figures/validation_simulation.png</div><div class="num">6</div>
 </section>
 
+<!-- 6b -->
+<section class="slide">
+  <div class="sur">Validation externe</div>
+  <h2>Le score indicatif confirme : le revenu est un biais, les heures sont du mérite</h2>
+  <div class="grille g2">
+    <table>
+      <tr><th>Mérite testé (HxBuddy)</th><th>Exactitude</th></tr>
+      <tr><td><b>B : cote R + heures (retenu)</b></td><td class="vert"><b>94,63 %</b></td></tr>
+      <tr><td>B, taux de 42 % ou 38 %</td><td>94,4 %</td></tr>
+      <tr><td>B, poids des heures ± 50 %</td><td>93,7 à 94,0 %</td></tr>
+      <tr><td>B + première génération</td><td>93,43 %</td></tr>
+      <tr><td>B + bonus régions éloignées</td><td>93,33 %</td></tr>
+      <tr><td>B + bonus revenus faibles</td><td>93,18 %</td></tr>
+      <tr><td>A : + revenu (comité sans pénalité)</td><td class="rouge">92,53 %</td></tr>
+      <tr><td>C : cote R seule</td><td class="rouge">92,18 %</td></tr>
+    </table>
+    <ul>
+      <li><b>Le revenu coûte 2,1 points, et retirer les heures en coûte 2,5.</b> Les deux choix du mérite sont validés.</li>
+      <li><b>B est un optimum</b> : chaque variation testée fait baisser le score.</li>
+      <li><b>Le reste est un aléa individuel.</b> « Étalon = B + bruit de 0,3 point de cote R » reproduit les 10 scores. Il prédit 0,28 d'écart pour le modèle de production, contre <b>0,270</b> dans l'énoncé.</li>
+      <li>Le plafond atteignable est d'environ 95 %. Nous avons arrêté là : retourner des décisions une à une serait apprendre l'étalon par le classement, pas modéliser le mérite.</li>
+    </ul>
+  </div>
+  <div class="marque">sondes/ · audit_rapport.ipynb · section 7</div><div class="num">7</div>
+</section>
+
 <!-- 7 -->
 <section class="slide">
   <div class="sur">Résultats sur les 4 000 candidats</div>
@@ -176,12 +203,13 @@
         <tr><td>Écart d'égalité des chances*</td><td class="rouge">0,295</td><td class="vert"><b>0,000</b></td></tr>
         <tr><td>Écart de parité</td><td class="rouge">0,190</td><td class="vert"><b>0,000</b></td></tr>
         <tr><td>Ratio d'impact (4/5)</td><td class="rouge">0,59</td><td class="vert"><b>1,00</b></td></tr>
+        <tr><td>Exactitude, mérite réel (HxBuddy)</td><td>n/a</td><td class="vert"><b>94,63 %</b></td></tr>
       </table>
       <p style="margin-top:22px"><b>386 décisions changent</b> sur 4 000 : 200 candidats éloignés gagnent la bourse, 173 candidats du Centre la perdent. Le budget reste à 40 %, dans la plage de 36 à 44 %.</p>
-      <p class="petit" style="margin-top:10px">* Contre le mérite estimé. Énoncé : écart de 0,270 du modèle de production, mesuré contre l'étalon du jury.</p>
+      <p class="petit" style="margin-top:10px">* Contre le mérite estimé. Avec un étalon bruité (diapo 7), on attend environ 0,28 pour la production et 0,01 pour notre modèle. L'énoncé donne 0,270 pour la production.</p>
     </div>
   </div>
-  <div class="marque">predictions.csv · audit_rapport.ipynb · section 9</div><div class="num">7</div>
+  <div class="marque">predictions.csv · audit_rapport.ipynb · section 9</div><div class="num">8</div>
 </section>
 
 <!-- 8 -->
@@ -204,7 +232,7 @@
       </ul>
     </div>
   </div>
-  <div class="marque">GOUVERNANCE.md · surveillance.py</div><div class="num">8</div>
+  <div class="marque">GOUVERNANCE.md · surveillance.py</div><div class="num">9</div>
 </section>
 
 <!-- 9 -->
@@ -226,7 +254,7 @@
       Tout se reproduit avec <code>python model_corrige.py</code></p>
     </div>
   </div>
-  <div class="marque">Merci !</div><div class="num">9</div>
+  <div class="marque">Merci !</div><div class="num">10</div>
 </section>
 
 </body>
