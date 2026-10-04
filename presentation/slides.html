@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>ÉquiAlgo · Pitch</title>
+<style>
+  :root {
+    --encre: #1a202c;
+    --gris: #5a6475;
+    --pale: #eef1f5;
+    --ligne: #d8dde5;
+    --centre: #2b6cb0;
+    --eloignee: #c05621;
+    --vert: #1b7f5b;
+    --rouge: #c53030;
+    --fond: #ffffff;
+  }
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--fond); color: var(--encre);
+    font-family: "Avenir Next", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  .slide { width: 1280px; height: 720px; padding: 56px 72px 48px; position: relative;
+    page-break-after: always; break-after: page; overflow: hidden; display: flex; flex-direction: column; }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+  .num { position: absolute; bottom: 26px; right: 40px; font-size: 13px; color: var(--gris); letter-spacing: .04em; }
+  .marque { position: absolute; bottom: 26px; left: 72px; font-size: 13px; color: var(--gris); letter-spacing: .04em; }
+  .sur { font-size: 15px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--vert); margin-bottom: 10px; }
+  h1 { font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -.01em; max-width: 1080px; }
+  h2 { font-size: 34px; line-height: 1.18; font-weight: 700; letter-spacing: -.01em; margin-bottom: 26px; max-width: 1100px; }
+  p, li { font-size: 21px; line-height: 1.45; }
+  .petit { font-size: 16px; color: var(--gris); line-height: 1.45; }
+  ul { list-style: none; }
+  li { padding-left: 22px; position: relative; margin-bottom: 12px; }
+  li::before { content: ""; position: absolute; left: 0; top: 12px; width: 9px; height: 9px; border-radius: 2px; background: var(--vert); }
+  b, strong { font-weight: 700; }
+  .rouge { color: var(--rouge); } .vert { color: var(--vert); }
+  .c { color: var(--centre); } .e { color: var(--eloignee); }
+  .grille { display: grid; gap: 40px; flex: 1; min-height: 0; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g-img { grid-template-columns: 1.25fr 1fr; align-items: center; }
+  img { max-width: 100%; max-height: 100%; display: block; }
+  .chiffre { font-size: 76px; font-weight: 700; line-height: 1; letter-spacing: -.02em; }
+  .legende { font-size: 18px; color: var(--gris); margin-top: 8px; }
+  .carte { background: var(--pale); border-radius: 12px; padding: 24px 28px; }
+  .carte h3 { font-size: 21px; margin-bottom: 10px; }
+  .carte p { font-size: 18px; }
+  table { border-collapse: collapse; width: 100%; font-size: 19px; }
+  th, td { padding: 9px 12px; text-align: right; border-bottom: 1px solid var(--ligne); }
+  th:first-child, td:first-child { text-align: left; }
+  th { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: var(--gris); font-weight: 600; }
+  .etapes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 26px; }
+  .etape { border-top: 5px solid var(--vert); padding-top: 14px; }
+  .etape .n { font-size: 15px; font-weight: 700; color: var(--vert); letter-spacing: .1em; }
+  .etape h3 { font-size: 23px; margin: 4px 0 8px; }
+  .etape p { font-size: 18px; color: #2d3748; }
+  .formule { font-size: 27px; font-weight: 600; background: var(--pale); border-left: 6px solid var(--vert);
+    padding: 16px 24px; border-radius: 6px; }
+  .titre-page { justify-content: center; background: linear-gradient(135deg, #f4f7f6 0%, #ffffff 60%); }
+  .titre-page h1 { font-size: 50px; margin-bottom: 26px; }
+  .titre-page .sous { font-size: 23px; color: var(--gris); max-width: 900px; line-height: 1.45; }
+  .barre { height: 26px; border-radius: 4px; display: inline-block; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<!-- 1 -->
+<section class="slide titre-page">
+  <div class="sur">ÉquiAlgo · Hackathon Génie &amp; Informatique 2026</div>
+  <h1>Le comité retirait 1,6 point de cote R<br>aux régions éloignées.<br><span class="vert">Nous l'avons rendu.</span></h1>
+  <p class="sous">Diagnostic du biais, correction structurelle et plan de surveillance pour un modèle d'octroi de bourses et de prêts étudiants.</p>
+  <div class="num">1</div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <div class="sur">Le constat</div>
+  <h2>À cote R égale, un candidat de région éloignée obtient moins souvent la bourse</h2>
+  <div class="grille g-img">
+    <img src="../figures/courbes_octroi.png" alt="Taux d'octroi selon la cote R par groupe">
+    <div>
+      <div class="chiffre"><span class="c">48,4 %</span></div>
+      <div class="legende">d'octroi à Montréal et dans la Capitale-Nationale</div>
+      <div class="chiffre" style="margin-top:26px"><span class="e">27,3 %</span></div>
+      <div class="legende">au Bas-Saint-Laurent, sur la Côte-Nord et en Gaspésie</div>
+      <p style="margin-top:30px">Pour avoir 50 % de chances, il faut <b>1,2 point de cote R de plus</b> en région éloignée. Ratio d'impact : <b class="rouge">0,56</b>, sous le seuil de 0,8.</p>
+    </div>
+  </div>
+  <div class="marque">audit_rapport.ipynb · sections 1–2</div><div class="num">2</div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <div class="sur">Le diagnostic</div>
+  <h2>Une pénalité fixe, la même partout : 17,6 des 21 points d'écart</h2>
+  <div class="grille g-img">
+    <img src="../figures/decomposition_ecart.png" alt="Décomposition de Shapley de l'écart">
+    <ul>
+      <li>Le comité se modélise par une logistique. Sa pénalité régionale vaut <b>2,15 logit, soit 1,6 point de cote R</b> (IC95 : 1,4 à 1,7).</li>
+      <li>Elle est <b>identique</b> dans les 3 régions éloignées (p = 0,75) et <b>constante</b> quel que soit le dossier (p = 0,58).</li>
+      <li>Second biais : le comité <b>favorise les revenus élevés</b>, ce qui pèse 4,4 points de plus contre les régions.</li>
+      <li><b class="rouge">562 candidats méritants</b> de régions éloignées ont été refusés dans l'historique.</li>
+    </ul>
+  </div>
+  <div class="marque">audit_rapport.ipynb · sections 3–4</div><div class="num">3</div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <div class="sur">Deux pièges</div>
+  <h2>Retirer la région ne suffit pas, et mesurer contre le comité trompe</h2>
+  <div class="grille g2">
+    <div class="carte">
+      <h3>1. Les proxys reconstituent la région</h3>
+      <p style="margin-bottom:14px">Capacité à prédire la région (AUC) : code postal <b>1,00</b> · distance <b>0,998</b> · heures <b>0,81</b> · revenu <b>0,69</b>.</p>
+      <table>
+        <tr><th>Effet de 220 km</th><th>avec région</th><th>sans région</th></tr>
+        <tr><td>Distance (logit)</td><td>+0,24</td><td class="rouge"><b>−1,08</b></td></tr>
+      </table>
+      <p style="margin-top:14px">Quand on retire la région, la pénalité <b>se déplace dans la distance</b>.</p>
+    </div>
+    <div class="carte">
+      <h3>2. L'égalité des chances, mesurée contre quoi ?</h3>
+      <table>
+        <tr><th>Écart de TPR du modèle de production</th><th></th></tr>
+        <tr><td>contre <code>decision_octroi</code></td><td><b>0,06</b></td></tr>
+        <tr><td>contre le mérite estimé</td><td class="rouge"><b>0,32</b></td></tr>
+      </table>
+      <p style="margin-top:14px">Égaliser le TPR sur des étiquettes biaisées revient à reproduire le comité. C'est pourquoi <code>ThresholdOptimizer</code> et <code>ExponentiatedGradient</code> (TPR) ne corrigent presque rien.</p>
+    </div>
+  </div>
+  <div class="marque">audit_rapport.ipynb · sections 5–6</div><div class="num">4</div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <div class="sur">Notre correction</div>
+  <h2>Laisser la région absorber le biais, puis la retirer du score</h2>
+  <div class="etapes">
+    <div class="etape"><div class="n">ÉTAPE 1</div><h3>Estimer avec la région</h3><p>On modélise le comité <b>avec</b> l'indicatrice de région, pour qu'elle absorbe la pénalité au lieu de la laisser fuir dans les proxys.</p></div>
+    <div class="etape"><div class="n">ÉTAPE 2</div><h3>Garder le mérite légitime</h3><p>On conserve la cote R et les heures. On retire la région, le revenu (favoritisme et proxy) et la distance.</p></div>
+    <div class="etape"><div class="n">ÉTAPE 3</div><h3>Décider à l'aveugle</h3><p>Un <b>seul seuil</b> pour tous : les 40 % meilleurs scores. Le score ne lit jamais la région.</p></div>
+  </div>
+  <div class="formule">Mérite = 1,39 × cote R + 0,20 × heures de travail</div>
+  <p style="margin-top:20px">Métrique retenue : <b>l'égalité des chances</b>. Le préjudice à éviter est de refuser un étudiant méritant à cause de son code postal. Contrairement à la parité démographique, elle respecte les différences réelles de mérite.</p>
+  <div class="marque">model_corrige.py · equite.py</div><div class="num">5</div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <div class="sur">Front de Pareto</div>
+  <h2>Corriger le biais rapproche du mérite ; s'écarter du comité est le prix attendu</h2>
+  <div class="grille" style="grid-template-columns: 1fr; gap: 14px;">
+    <img src="../figures/front_pareto.png" alt="Front de Pareto" style="max-height: 400px; margin: 0 auto;">
+    <p class="petit"><b>λ</b> = part du biais retirée (0 = comité, 1 = mérite, &gt; 1 = sur-correction). Validation semi-synthétique, où le vrai mérite est connu : <b>99,3 % d'exactitude</b> et écart de 0,009 pour notre méthode, contre 95,2 % pour le meilleur outil fairlearn (<code>ExponentiatedGradient</code>, parité démographique).</p>
+  </div>
+  <div class="marque">figures/front_pareto.png · figures/validation_simulation.png</div><div class="num">6</div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <div class="sur">Résultats sur les 4 000 candidats</div>
+  <h2>Même budget, même taux pour les méritants des deux blocs</h2>
+  <div class="grille g2">
+    <table>
+      <tr><th>Taux d'octroi</th><th>Production</th><th>Corrigé</th></tr>
+      <tr><td>Montréal</td><td>47,1 %</td><td>40,2 %</td></tr>
+      <tr><td>Capitale-Nationale</td><td>46,3 %</td><td>39,7 %</td></tr>
+      <tr><td>Bas-Saint-Laurent</td><td class="e">26,8 %</td><td class="vert"><b>38,3 %</b></td></tr>
+      <tr><td>Côte-Nord</td><td class="e">26,1 %</td><td class="vert"><b>39,7 %</b></td></tr>
+      <tr><td>Gaspésie–Îles-de-la-Madeleine</td><td class="e">29,9 %</td><td class="vert"><b>41,5 %</b></td></tr>
+      <tr><td><b>Global</b></td><td>39,0 %</td><td><b>40,0 %</b></td></tr>
+    </table>
+    <div>
+      <table>
+        <tr><th>Indicateur</th><th>Production</th><th>Corrigé</th></tr>
+        <tr><td>Écart d'égalité des chances*</td><td class="rouge">0,295</td><td class="vert"><b>0,000</b></td></tr>
+        <tr><td>Écart de parité</td><td class="rouge">0,190</td><td class="vert"><b>0,000</b></td></tr>
+        <tr><td>Ratio d'impact (4/5)</td><td class="rouge">0,59</td><td class="vert"><b>1,00</b></td></tr>
+      </table>
+      <p style="margin-top:22px"><b>386 décisions changent</b> sur 4 000 : 200 candidats éloignés gagnent la bourse, 173 candidats du Centre la perdent. Le budget reste à 40 %, dans la plage de 36 à 44 %.</p>
+      <p class="petit" style="margin-top:10px">* Contre le mérite estimé. Énoncé : écart de 0,270 du modèle de production, mesuré contre l'étalon du jury.</p>
+    </div>
+  </div>
+  <div class="marque">predictions.csv · audit_rapport.ipynb · section 9</div><div class="num">7</div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <div class="sur">Gouvernance et surveillance</div>
+  <h2>La région sert à mesurer, jamais à décider</h2>
+  <div class="grille g2">
+    <div>
+      <ul>
+        <li><b>Échantillon de contrôle trimestriel</b> : 5 % des dossiers, révisés à l'aveugle (sans région ni code postal). Seule façon honnête de mesurer l'égalité des chances. Alerte si l'écart dépasse 0,05.</li>
+        <li><b>Chaque cohorte</b> : taux par région, ratio 4/5, dérive des variables (PSI) et des proxys, avec <code>surveillance.py</code>.</li>
+        <li><b>Trois niveaux de réponse</b> : vigilance, révision humaine des cas limites, puis retour à la décision humaine.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><b>Aucun refus purement automatisé</b>, dans l'esprit de la Loi 25 (art. 12.1) : le candidat connaît les facteurs de son score et peut contester devant une personne.</li>
+        <li><b>Revenu exclu</b> : la condition sociale est un motif de discrimination interdit par l'art. 10 de la Charte québécoise.</li>
+        <li><b>Revue annuelle</b> par un comité d'éthique où siègent les régions éloignées. Rapport de transparence public.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="marque">GOUVERNANCE.md · surveillance.py</div><div class="num">8</div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="sur">Ce que nous assumons</div>
+  <h2>Des choix explicites, et un filet de sécurité</h2>
+  <div class="grille g2">
+    <ul>
+      <li><b>Le mérite est normatif.</b> Garder les heures et retirer le revenu sont des choix de valeur, que l'institution doit entériner. Une variable à changer dans <code>equite.py</code>.</li>
+      <li><b>Les heures sont aussi un proxy</b> (AUC 0,81). Elles jouent ici en faveur des régions. Surveillance mensuelle.</li>
+      <li><b>L'hypothèse structurelle</b> (pénalité additive et uniforme) est soutenue par les tests, mais l'échantillon de contrôle reste le juge final.</li>
+    </ul>
+    <div class="carte" style="align-self:start">
+      <h3>Livrables</h3>
+      <p><code>audit_rapport.ipynb</code> : diagnostic<br>
+      <code>model_corrige.py</code> : correction et front de Pareto<br>
+      <code>predictions.csv</code> : 4 000 décisions, 40 %<br>
+      <code>GOUVERNANCE.md</code>, <code>surveillance.py</code><br>
+      Tout se reproduit avec <code>python model_corrige.py</code></p>
+    </div>
+  </div>
+  <div class="marque">Merci !</div><div class="num">9</div>
+</section>
+
+</body>
+</html>
