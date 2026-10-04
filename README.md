@@ -61,11 +61,13 @@ L'étalon du jury est caché. Les définitions plausibles du mérite (cote R seu
 - **L'écart de 0,270** annoncé dans l'énoncé pour le modèle de production. Chaque définition implique un écart différent (audit, section 7).
 - **Le score indicatif de HxBuddy** (exactitude contre le « mérite réel »), avec une soumission par définition. Les fichiers sont dans [`sondes/`](sondes/).
 
-| Sonde | Mérite | Exactitude HxBuddy |
-|---|---|---|
-| A | cote R + revenu + heures (le comité sans sa pénalité) | *à compléter* |
-| B | cote R + heures (**retenu**) | *à compléter* |
-| C | cote R seule | *à compléter* |
+| Sonde | Mérite | Exactitude HxBuddy | F1 macro |
+|---|---|---|---|
+| A | cote R + revenu + heures (le comité sans sa pénalité) | 92,53 % | 92,21 % |
+| **B** | **cote R + heures (retenu)** | **94,63 %** | **94,40 %** |
+| C | cote R seule | 92,18 % | 91,85 % |
+
+B l'emporte nettement. Ajouter le revenu fait perdre 2,1 points, ce qui confirme que la préférence du comité pour les revenus élevés est un biais et non du mérite. Retirer les heures fait perdre 2,5 points : le travail rémunéré fait bien partie du mérite.
 
 ## Reproduire
 
